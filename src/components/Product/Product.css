@@ -9,10 +9,49 @@
     color: blue;
     font-weight: 400;
 }
-.main-button{
+/* .main-button{
     background-color: goldenrod;
     width: 150px;
     height: 30px;
     border: 1px solid gold;
     border-radius: 5px;
-}
+   
+} */
+
+.main-button {
+    position: relative;
+    background-color: goldenrod;
+    border: none;
+    font-size: 15px;
+    color: #FFFFFF;
+    padding: 10px;
+    width: 150px;
+    text-align: center;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+    height: 40px;
+    border-radius: 5px;
+  }
+  
+  .main-button:after {
+    content: "";
+    background: #90EE90;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px!important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s
+  }
+  
+  .main-button:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+  } 

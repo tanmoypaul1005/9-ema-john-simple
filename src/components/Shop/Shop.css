@@ -1,4 +1,4 @@
-.Shop-container{
+.twin-container{
     display: flex;
 }
 .product-container{
@@ -6,5 +6,4 @@
     margin-left: 90px;
     border-right: 2px solid gray;
     margin-right: 10px;
-
 }
