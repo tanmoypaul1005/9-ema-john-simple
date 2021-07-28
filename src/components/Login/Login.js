@@ -2,7 +2,7 @@
 import React, { useContext, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { UserContext } from "../../App";
-import { createUserWithEmailAndPassword, handleFbSingIn, handleGoogleSingIn, handleSingOut, initializeLoginFramework, signInWithEmailAndPassword } from "./loginManager";
+import { createUserWithEmailAndPassword, handleFbSingIn, handleGoogleSingIn, handleSingOut, initializeLoginFramework, resetpassword, signInWithEmailAndPassword } from "./loginManager";
 
 
 
@@ -129,6 +129,7 @@ e.preventDefault();
      <br/>
      <input type="submit" value={newUser?'Sing UP':'Sing In'} />
      </form>
+     <br/><button onClick={()=>resetpassword(user.email)}>Forget password</button>
      <p style={{color:'red'}}>{user.error}</p>
      {user.success && <p style={{color:'green'}}>User {newUser?'Created' :'Logged In'} success</p>}
     </div>

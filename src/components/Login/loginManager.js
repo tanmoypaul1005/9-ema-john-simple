@@ -82,8 +82,8 @@ export const handleGoogleSingIn=()=>{
       const newUserInfo={};
       newUserInfo.error=error.message;
       newUserInfo.success=false;
+      verifyEmail(); 
       return newUserInfo;
-  
     });
   }
 
@@ -117,4 +117,26 @@ export const handleGoogleSingIn=()=>{
     }).catch((error) => {
       console.log(error)
     });  
+    }
+
+    const verifyEmail=()=>{
+      firebase.auth().currentUser.sendEmailVerification()
+      .then(() => {
+        // Email verification sent!
+        // ...
+      });
+    }
+
+
+   export const resetpassword=email=>{
+      firebase.auth().sendPasswordResetEmail(email)
+      .then(() => {
+        // Password reset email sent!
+        // ..
+      })
+      .catch((error) => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+       console.log(errorMessage,errorCode)
+      });
     }
