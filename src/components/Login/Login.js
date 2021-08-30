@@ -29,6 +29,7 @@ const GoogleSingIn=()=> {
   // setUser(res);
   // setLoggedInUser(res);
   handleResponse(res, false);
+  history.replace(from);
   })
 }
 

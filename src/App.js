@@ -6,7 +6,7 @@ import {
 import './App.css';
 import Header from './components/Header/Header.js';
 import Inventory from './components/Inventory/Inventory';
-import Login from './components/Login/Login';
+import Login from "./components/Login/Login.js";
 import NotFound from './components/NotFound/NotFound';
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import ProductDetail from './components/ProductDetail/ProductDetail';
@@ -41,16 +41,18 @@ function App(props) {
     </PrivateRoute>
 
 
-    <Route path="/login">
-    <Login></Login>
-    </Route>
-    
 
     <PrivateRoute path="/shipment">
     <Shipment></Shipment>
     </PrivateRoute>
 
-     
+      
+    <Route path="/login">
+    <Login></Login>
+    </Route>
+    
+
+
     <Route exact path="/">
     <Shop></Shop>
     </Route> 

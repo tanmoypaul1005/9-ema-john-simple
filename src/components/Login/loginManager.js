@@ -22,6 +22,7 @@ export const handleGoogleSingIn=()=>{
       success:true
 
     };
+    setUserToken(); 
     return signedInUser;
   }).catch((error) => {
     console.log(error);
@@ -29,7 +30,13 @@ export const handleGoogleSingIn=()=>{
   })
   }
 
-
+const setUserToken=()=>{
+  firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
+  sessionStorage.setItem('token',idToken);
+  }).catch(function(error) {
+    // Handle error
+  });
+}
 
   export const handleFbSingIn=()=>{
     const fbProvider = new firebase.auth.FacebookAuthProvider();

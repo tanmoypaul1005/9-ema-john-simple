@@ -1,35 +1,41 @@
-import React, { useEffect } from 'react';
-import  { useState } from 'react';
-import fakeData from'../../fakeData'
-import './Shop.css'
-import Product from'../Product/Product';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { addToDatabaseCart, getDatabaseCart } from '../../utilities/databaseManager';
 import Cart from '../Cart/Cart';
-import { Link } from 'react-router-dom';
+import Product from '../Product/Product';
+import './Shop.css';
 
 
 const Shop = () => {
-    const first10=fakeData.slice(0,10);
-    const [Products, setProducts] = useState(first10);
-     const [cart, setCard] = useState([]);
-
-
+    // const first10=fakeData.slice(0,10);
+    const [Products, setProducts] = useState([]);
+    const [cart, setCard] = useState([]);
+     const [search, setSearch]=useState('');
+    useEffect(() => {
+   fetch('http://localhost:5000/products?search='+search)
+   .then(res=>res.json())
+   .then(data=>setProducts(data))
+    }, [search])
 
     
+   //cart 
    useEffect(() => {
    const saveCart=getDatabaseCart();
    const productKeys=Object.keys(saveCart);
-
-   const previousCart=productKeys.map(existingkey =>{
-       const product=fakeData.find(pd=>pd.key === existingkey);
-       product.quantity= saveCart[existingkey];
-       return product;
-   })
-   setCard(previousCart);
+   fetch('http://localhost:5000/productByKeys',{
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(productKeys)
+})
+.then(res=>res.json())
+.then(data=> setCard(data))
  }, [])
 
 
-
+const handleSearch=event => {
+  setSearch(event.target.value);
+  console.log(event.target.value)
+}
      
     function handleAddProduct(product){
       const toBeAddekey=product.key;
@@ -56,6 +62,13 @@ const Shop = () => {
     return (
         <div className="twin-container">
          <div className="product-container">
+         
+        {
+          Products.length ===0&& <h3>Loading.........</h3>
+        }
+        <input type="text" onChange={handleSearch} className="product-search" placeholder="Search" />
+
+
          {
          Products.map(pd =><Product 
           key={pd.key}
