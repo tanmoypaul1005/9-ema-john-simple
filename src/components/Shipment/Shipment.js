@@ -39,7 +39,7 @@ const Shipment = () => {
 <div style={{display: shipmentData? 'none' :'block'}} className="col-md-6">
 <form className="ship-form" onSubmit={handleSubmit(onSubmit)}>
 
-<input defaultValue={loggedInUser.emai}  {...register("name", { required: true })}  placeholder="Your Name" />
+<input defaultValue={loggedInUser.name}  {...register("name", { required: true })}  placeholder="Your Name" />
 {errors.name && <span className="error">Name is required</span>}
 
 <input defaultValue={loggedInUser.email} {...register("email", { required: true })} placeholder="Your Email" />
